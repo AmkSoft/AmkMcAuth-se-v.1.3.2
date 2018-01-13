@@ -1,0 +1,63 @@
+name: AmkMcAuth
+main: com.mooo.amksoft.amkmcauth.AmkMcAuth
+version: 1.3.2
+author: All the credits goes to original RoyalAuth author = jkcclemens. This is a fork/continuation by AmkSoft. 
+website: https://amksoft.mooo.com/minecraft/plugins/AmkMcAuth
+description: A security-based plugin that locks player accounts with passwords that must be entered before the player can play.
+             This plugin is based on the RoyalAuth plugin created by jkcclemens. AmkMcAuth is the working MC 1.9+ upgrade. 
+
+commands:
+  amkmcauth:
+    description: Provides access to administrative functions of the plugin.
+    usage: /<command> [subcommands|help]
+    aliases: [amka, amkauth]
+  login:
+    description: Logs a player in.
+    usage: /<command> [password]
+    aliases: [l, logon]
+  logout:
+    description: Logs a player out.
+    usage: /<command>
+    aliases: [lo, logoff]
+  register:
+    description: Registers a player.
+    usage: /<command> [password]
+  changepassword:
+    description: Changes a player's password.
+    usage: /<command> [oldPassword] [newPassword]
+    aliases: [changepass, passchange]
+
+permissions:
+  amkauth.login:
+    description: Allows use of /login
+    default: true
+  amkauth.logout:
+    description: Allows use of /logout
+    default: true
+  amkauth.register:
+    description: Allows use of /register
+    default: true
+  amkauth.changepassword:
+    description: Allows use of /changepassword
+    default: true
+  amkauth.amkmcauth:
+    description: Allows use of /amkauth
+    default: op
+  amkauth.nlpwd:
+    description: controls the NoLoginPassWrD on Login (if not set via nlpwdadd)
+    default: false
+  amkauth.user:
+    description: Contains all permission nodes for non-administrative functions
+    default: false
+    children:
+      amkauth.login: true
+      amkauth.logout: true
+      amkauth.register: true
+      amkauth.changepassword: true
+      amkauth.nlpwd: false
+  amkauth.*:
+    description: Contains every permission node in AmksoftMcAuth
+    default: false
+    children:
+      amkauth.user: true
+      amkauth.amkmcauth: true

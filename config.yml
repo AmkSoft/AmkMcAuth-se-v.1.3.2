@@ -1,0 +1,114 @@
+login:
+  # Should the plugin be disabled if online mode is on?
+  disable_if_online_mode: false
+  # Require a login to play?
+  require: true
+  permission:
+    enabled: false
+    permission: "amkauth.requirelogin"
+  # Should a player that is already online and logged in be kicked if another player attempts to join as him?
+  kick_if_already_online: false
+  # Should a player that types in a wrong password immediately be kicked?
+  kick_on_password_fail: false
+  restrictions:
+    chat:
+      # Allow chat from players NOT logged in?
+      allowed: false
+      # If chat.allowed is true, prefix all messages from players not logged in with the following
+      prefix: "[NLI] "
+    commands:
+      # Allow commands from players NOT logged in?
+      allowed: false
+      # Commands to be allowed if commands.allowed is false. Useful for on-join commands.
+      # Aliases can be used unless the command has an argument. 
+      # In the default values, "!" will work for "unstuck," but
+      # "we cui" will not work for "worldedit cui."
+      exempt:
+      - "!"
+      - "we cui"
+    movement:
+      # Allow looking around (only changing vision, not walking)
+      look_around: true
+      # Allow walking around (includes changing vision)?
+      walk: false
+      # if 'walk' is set to false (no movement), what is the maximum time to Allow walking around
+      # before players location is reset (could be a NoCheatPlus Bug workaround)?
+      # time in miliseconds (seconds*1000). Set to zero (0) ignores this setting (this is default).
+      allowmovetime: 0
+  godmode:
+    # Should players that have yet to login have godmode?
+    enabled: true
+    after_login:
+      # Enable god mode after the player logs in?
+      enabled: true
+      # Length in seconds
+      length: 10.0
+  # Set players that are not logged in to adventure mode?
+  adventure_mode: false
+  # Teleport players to spawn?
+  teleport_to_spawn: false
+  remind:
+    # Remind players to login/register if they have not?
+    enabled: true
+    # Interval (in seconds) to remind players to login/register
+    interval: 10.0
+    kick:
+      # Kick players that take too long to log in?
+      enabled: false
+      # How long to wait for a player to login before kicking them in seconds
+      wait: 30.0
+
+# Login sessions. If you log out and log back in, you will not be prompted for a
+# password again if these are configured.
+sessions:
+  # Enabled login sessions?
+  enabled: true
+  # Length in minutes for a session to last. A session starts at player quit.
+  length: 15.0
+  # Check the IP of the player logging in again to make sure it matches? This should probably be true.
+  check_ip: true
+  # Register/Login/ChangePassword using Command (shows up in Logs) or using hidden Chat messages.
+  # This controls what helpmessage is shown to User when help is needed.
+  # Possible Values: "Commands"  or "HiddenChat". Default is "Commands".
+  LoginCommandsMessage: Commands
+
+usernames:
+  # Verify if the username is a valid Minecraft username?
+  verify: true
+  # Regular expression to check usernames against. If you don't know regular expressions, don't tinker with this.
+  regex: "[\\w]{2,16}"
+
+passwords:
+  # Encryption type to use on passwords. Can be any Java type or AMKAUTH, which is SHA-512 rehashed 25 times.
+  hash_type: "AMKAUTH"
+  # Passwords to reject on registration and warn about on login. Case-insensitive
+  disallowed:
+  - "password"
+  - "[password]"
+
+# Userdata saving options
+saving:
+  # How often (in minutes) to save the player userdata to the disk. Userdata will be stored locally 
+  # and accessed locally, but it must be saved to persist. The data will be saved when the plugin is 
+  # disabled, as well (like a server stop/restart). This cannot be set to lower than 1.
+  interval: 5.0
+  # Should the plugin check for old userdata on startup? This will convert any usernames into UUIDs. 
+  # This should be true at least for the first run on the UUID system.
+  check_old_userdata: true
+
+  # Every time a player Joins your server, AmkMcAuth checks to see if the player profiledata 
+  # already has been loaded into memory. If not, it loads it from File.   
+  # How long (in days) should AmkMcAuth keep player profiledata of inactive players in internal memory?
+  # If the last login time of a player is older then remove_inactive_after DAYS, AmkMcAuth will remove
+  # this playerdata from internal memory to free up the used memory to store player profiledata.
+  # The data data is not lost, it will be loaded from File if player is logging in again.
+  # If this is set to 0 (or negative) AmkMcAuth will not remove profiledata of inactive players. 
+  remove_inactive_after: 10
+
+general:
+  # Metrics Enabled by default
+  metrics_enabled: true
+  # Controls how many registered users are allowed per IP-Address (default 50 is like unlimited). 
+  # Setting this to zero (0) will disable this feature, no Ip-Address counting on registration.
+  users_per_ipaddress: 50
+  language_file: "lang/en_us.properties"
